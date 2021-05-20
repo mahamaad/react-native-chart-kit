@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Defs, Line, LinearGradient, Stop, Text } from "react-native-svg";
+import {
+  Defs,
+  Line,
+  LinearGradient,
+  Stop,
+  Text,
+  TSpan
+} from "react-native-svg";
 
 import { ChartConfig, Dataset, PartialBy } from "./HelperTypes";
 
@@ -292,17 +299,18 @@ class AbstractChart<
         xLabelsOffset;
 
       return (
-        <Text
-          origin={`${x}, ${y}`}
-          rotation={verticalLabelRotation}
-          key={Math.random()}
-          x={x}
-          y={y}
-          textAnchor={verticalLabelRotation === 0 ? "middle" : "start"}
-          {...this.getPropsForLabels()}
-          {...this.getPropsForVerticalLabels()}
-        >
-          {`${formatXLabel(label)}${xAxisLabel}`}
+        <Text key={Math.random()}>
+          <TSpan
+            origin={`${x}, ${y}`}
+            rotation={verticalLabelRotation}
+            x={x}
+            y={y}
+            textAnchor={verticalLabelRotation === 0 ? "middle" : "start"}
+            {...this.getPropsForLabels()}
+            {...this.getPropsForVerticalLabels()}
+          >
+            {`${formatXLabel(label)}${xAxisLabel}`}
+          </TSpan>
         </Text>
       );
     });
